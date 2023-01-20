@@ -4,7 +4,7 @@ Repo for all anime game character armatures blend files for easier modding.
 
 # How to use?
 
-1. Clone the entire repository or use [DownGit](https://minhaskamal.github.io/DownGit/#/home) to download individual files
+1. Clone the entire repository or download individual blend files that you need
 2. Open the corresponding armature blend file in Blender
 3. Make sure you are in Object Mode
 4. Copy the armature and paste it into your modded character blend file
