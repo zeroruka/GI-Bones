@@ -19,7 +19,6 @@ found = False
 for obj in bpy.data.objects:
     # Check if the object's name contains "Body-vb"
     if "Body-vb" in obj.name:
-        # Print the object's name
         object_name_migoto = obj.name
         found = True
         break
@@ -53,37 +52,15 @@ for obj in bpy.data.objects:
 
 
 object_name_original='Body'
-original_model=[]
-migoto_model=[]
 
-
-def getV(vg_index,object_name):
-    vg_idx = vg_index
-    o = bpy.data.objects[object_name]
-    vs = [ v for v in o.data.vertices if vg_idx in [ vg.group for vg in v.groups ] ]
-    return vs,o.vertex_groups[vg_idx]
-
-
-#get orignal model vertices index
-for vg in bpy.data.objects[object_name_original].vertex_groups:
-    vertex_source= getV(vg.index,object_name_original)
-    vs_index=[x.index for x in vertex_source[0]],vertex_source[1].index,vertex_source[1].name
-    original_model.append(vs_index)
-    
-#get 3dmigoto model vertices index
-for vg in bpy.data.objects[object_name_migoto].vertex_groups:
-    vertex_source= getV(vg.index,object_name_migoto)
-    vs_index=[x.index for x in vertex_source[0]],vertex_source[1].index,vertex_source[1].name
-    migoto_model.append(vs_index)
-    
-for x in original_model:
-    for y in migoto_model:
-        if (x[0] == y[0]):
-            try:
-                bpy.data.objects[armature_name].data.bones[x[2]].name = y[2]
-            except Exception:
-                print(f'couldnt possibly rename bone {x[2]}')
-                pass
+bpy.context.view_layer.objects.active=bpy.data.objects[object_name_original]
+bpy.ops.object.vertex_group_sort(sort_type='NAME')
+for vertex_group in bpy.data.objects['Body'].vertex_groups:
+    try:
+        bpy.data.armatures[armature_name].bones[vertex_group.name].name = str(vertex_group.index)
+        vertex_group.name = str(vertex_group.index)
+    except Exception as e:
+        raise RuntimeError(e)
 
 
 new_armature_name = f"{object_name_migoto.split('Body')[0]} Armature"
