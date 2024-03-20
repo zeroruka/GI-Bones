@@ -23,7 +23,7 @@ Repo for all anime game character armatures blend files for easier modding.
 
 # How to use script
 
-Script (rename_bones.py) is originally made by Modder4869#4818, modified by me for easier use.
+Script (rename_bones.py) is originally made by Modder4869#4818, simplified by LeoMods for easier use.
 
 1. Import the base fbx model using BetterFBX. FBX model files can be found in [GI-Assets](https://github.com/zeroruka/GI-Assets)
 2. Import the corresponding 3dmigoto dump using GIMI. 3dmigoto dump files can be found in [GI-Model-Importer-Assets](https://github.com/SilentNightSound/GI-Model-Importer-Assets)
